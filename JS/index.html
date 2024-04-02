@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Button</title>
+    <style>
+        #resultdiv{
+            background-color: brown;
+            border-radius: 5px;
+            color: white;
+            width: 500px;
+            height: 500px;
+            padding-left: 25px;
+
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="resultdiv">
+        <h1 id="result">Hello!</h1>
+        <input type="radio" name="gender" id="male" onclick="mygender('Male')">
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="female" onclick="mygender('Female')">
+        <label for="female">Female</label>
+        <br><br>
+        <label for="#">Enter your fee:</label>
+        <input type="number" id="fee" name="fee" value="0" title="Enter your fee">
+        <br><br>
+        <input type="checkbox" name="tax" id="tax" value="500" onchange="calculatefee(this)">500
+        <input type="checkbox" name="vat" id="vat" value="750" onchange="calculatefee(this)">750
+        <input type="checkbox" name="other" id="other" value="250" onchange="calculatefee(this)">250
+        <br><br>
+        <label for="#">Total Fee: </label><label id="finalresult">0</label>
+    </div>
+    <script>
+        function mygender(mygender){
+            document.getElementById('result').innerHTML = "Hello " + mygender + "!";
+        }
+
+        function calculatefee(checkbox){
+            var basefee = parseFloat(document.getElementById("fee").value);
+            var inputfee = parseFloat(checkbox.value);
+            var finalamt = basefee;
+            if (checkbox.checked){
+                finalamt += inputfee;
+            } else {
+                finalamt = parseFloat(document.getElementById('finalresult').innerHTML);
+                finalamt -= inputfee;
+            }
+            document.getElementById("finalresult").innerHTML = finalamt;
+        }
+    </script>
+</body>
+</html>
